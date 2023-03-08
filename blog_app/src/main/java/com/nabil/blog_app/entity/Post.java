@@ -33,4 +33,7 @@ public class Post {
     //removal is enabled, JPA will automatically delete any child entities
     // that are no longer associated with their parent entities.
     private Set<Comment> comments  = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }
