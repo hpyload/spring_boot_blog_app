@@ -31,26 +31,27 @@ public class PostController {
 
     @GetMapping(value = POST_ENDPOINT)
     public PostResponse getAllPosts(
-            @RequestParam(value = "pageNo", defaultValue = DEFAULT_VALUE_PAGE_NO, required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = DEFAULT_VALUE_PAGE_SIZE, required = false) int pageSize,
-            @RequestParam(value = "sortBy", defaultValue = DEFAULT_VALUE_SORT_BY, required = false) String sortBy,
-            @RequestParam(value = "sortOrder", defaultValue = DEFAULT_VALUE_SORT_ORDER, required = false) String sortOrder){
+            @RequestParam(value = PAGE_NO, defaultValue = DEFAULT_VALUE_PAGE_NO, required = false) int pageNo,
+            @RequestParam(value = PAGE_SIZE, defaultValue = DEFAULT_VALUE_PAGE_SIZE, required = false) int pageSize,
+            @RequestParam(value = SORT_BY, defaultValue = DEFAULT_VALUE_SORT_BY, required = false) String sortBy,
+            @RequestParam(value = SORT_ORDER, defaultValue = DEFAULT_VALUE_SORT_ORDER, required = false) String sortOrder){
         return new ResponseEntity<>(postService.getAllPosts(pageNo, pageSize,sortBy, sortOrder), HttpStatus.OK).getBody();
 //        ResponseEntity represents the whole HTTP response: status code, headers, and body.
     }
 
-    @GetMapping(POST_PATH_ID)
-    public ResponseEntity<PostDto> getPostById(@PathVariable(name = PATH_VARIABLE_ID) Long postId){
+    @GetMapping(PATH_POST_ID)
+    public ResponseEntity<PostDto> getPostById(@PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         return new ResponseEntity<>(postService.getPostById(postId), HttpStatus.OK);
     }
 
-    @PutMapping(POST_PATH_ID)
-    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable(name = PATH_VARIABLE_ID) Long postId){
+    @PutMapping(PATH_POST_ID)
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,
+                                              @PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         return new ResponseEntity<>(postService.updatePost(postDto, postId), HttpStatus.OK);
     }
 
-    @DeleteMapping(POST_PATH_ID)
-    public ResponseEntity<String> deletePost(@PathVariable(name = PATH_VARIABLE_ID) Long postId){
+    @DeleteMapping(PATH_POST_ID)
+    public ResponseEntity<String> deletePost(@PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         postService.deletePostById(postId);
         return new ResponseEntity<>("Post entity deleted successfully.", HttpStatus.OK);
     }
