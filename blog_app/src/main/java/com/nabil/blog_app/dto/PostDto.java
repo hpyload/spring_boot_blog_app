@@ -26,4 +26,5 @@ public class PostDto {
     @NotEmpty(message = NOT_EMPTY_CONTENT)
     private String content;
     private Set<CommentDto> comments;
+    private Long categoryId;
 }

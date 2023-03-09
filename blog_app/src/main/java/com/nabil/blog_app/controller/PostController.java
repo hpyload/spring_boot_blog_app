@@ -3,6 +3,7 @@ package com.nabil.blog_app.controller;
 import com.nabil.blog_app.dto.PostDto;
 import com.nabil.blog_app.response.PostResponse;
 import com.nabil.blog_app.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class PostController {
     }
 
     @PostMapping(value = POST_ENDPOINT)
-    public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
+    public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
 //        Assume that we are sending this JSON in the request body, now inside the controller,
 //        we can bind JSON Object to Domain Object.
         return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.CREATED);
@@ -45,7 +46,7 @@ public class PostController {
     }
 
     @PutMapping(PATH_POST_ID)
-    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto,
+    public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto,
                                               @PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         return new ResponseEntity<>(postService.updatePost(postDto, postId), HttpStatus.OK);
     }

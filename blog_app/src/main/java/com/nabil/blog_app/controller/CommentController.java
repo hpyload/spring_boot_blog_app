@@ -2,6 +2,7 @@ package com.nabil.blog_app.controller;
 
 import com.nabil.blog_app.dto.CommentDto;
 import com.nabil.blog_app.service.CommentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CommentController {
     }
 
     @PostMapping(COMMENT_ENDPOINT)
-    public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto commentDto,
+    public ResponseEntity<CommentDto> createComment(@Valid @RequestBody CommentDto commentDto,
                                                     @PathVariable(value = PATH_VARIABLE_POST_ID) Long postId) {
         return new ResponseEntity<>(commentService.createComment(commentDto, postId), HttpStatus.CREATED);
     }
@@ -41,7 +42,7 @@ public class CommentController {
     }
 
     @PutMapping(PATH_COMMENT_ID)
-    public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto,
+    public ResponseEntity<CommentDto> updateComment(@Valid @RequestBody CommentDto commentDto,
                                                     @PathVariable(value = PATH_VARIABLE_POST_ID) Long postId,
                                                     @PathVariable(value = PATH_VARIABLE_COMMENT_ID) Long commentId) {
 

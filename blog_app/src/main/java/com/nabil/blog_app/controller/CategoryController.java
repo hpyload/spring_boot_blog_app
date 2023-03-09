@@ -2,6 +2,7 @@ package com.nabil.blog_app.controller;
 
 import com.nabil.blog_app.dto.CategoryDto;
 import com.nabil.blog_app.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CategoryController {
     }
 
     @PostMapping(CATEGORY_ENDPOINT)
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
         return new ResponseEntity<>(categoryService.createCategory(categoryDto), HttpStatus.CREATED);
     }
 
@@ -39,7 +40,7 @@ public class CategoryController {
     }
 
     @PutMapping(PATH_CATEGORY_ID)
-    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,
+    public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto,
                                       @PathVariable(value = PATH_VARIABLE_CATEGORY_ID) Long categoryId) {
         return new ResponseEntity<>(categoryService.updateCategory(categoryDto, categoryId), HttpStatus.OK);
     }
