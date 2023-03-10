@@ -47,4 +47,6 @@ public class Constants {
     public final static  String SIZE_DESCRIPTION = "Description should have at least 10 characters";
     public final static  String SIZE_TITLE = "Title should have at least 2 characters";
     //----------------------------------------------------------//
+    public final static  String USER_NOT_FOUND = "User not found with username or email : ";
+
 }

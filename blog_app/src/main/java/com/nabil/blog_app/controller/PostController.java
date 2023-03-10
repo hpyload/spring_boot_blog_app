@@ -6,6 +6,7 @@ import com.nabil.blog_app.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static com.nabil.blog_app.util.Constants.*;
@@ -23,6 +24,7 @@ public class PostController {
         this.postService = postService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = POST_ENDPOINT)
     public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto postDto){
 //        Assume that we are sending this JSON in the request body, now inside the controller,
@@ -45,12 +47,14 @@ public class PostController {
         return new ResponseEntity<>(postService.getPostById(postId), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(PATH_POST_ID)
     public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto,
                                               @PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         return new ResponseEntity<>(postService.updatePost(postDto, postId), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(PATH_POST_ID)
     public ResponseEntity<String> deletePost(@PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         postService.deletePost(postId);
