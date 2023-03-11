@@ -33,6 +33,6 @@ public class AuthController {
 
     @PostMapping({REGISTER_ENDPOINT, SIGNUP_ENDPOINT})
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
-        return new ResponseEntity<>(authService.register(registerDto), HttpStatus.OK);
+        return new ResponseEntity<>(authService.register(registerDto), HttpStatus.CREATED);
     }
 }

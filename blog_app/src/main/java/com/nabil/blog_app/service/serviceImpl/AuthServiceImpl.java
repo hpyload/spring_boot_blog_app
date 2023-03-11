@@ -75,6 +75,6 @@ public class AuthServiceImpl implements AuthService {
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
-        return "User" + registerDto.getName() + " registered in successfully.";
+        return "User " + registerDto.getName() + " registered in successfully.";
     }
 }
