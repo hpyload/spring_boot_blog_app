@@ -8,6 +8,7 @@ public class Constants {
     public final static String POST_RESOURCE_NAME = "Post";
     public final static String COMMENT_RESOURCE_NAME = "Comment";
     public final static String CATEGORY_RESOURCE_NAME = "Category";
+    public final static String ROLE_RESOURCE_NAME = "Role";
     public final static String FIELD_NAME = "id";
     public final static String COMMENT_DELETE_INFO = "Comment deleted successfully.";
     public final static String POST_DELETE_INFO = "Post deleted successfully.";
@@ -37,16 +38,25 @@ public class Constants {
     public final static String PATH_CATEGORY_ID = "/categories/{categoryId}";
     public final static  String PATH_VARIABLE_CATEGORY_ID = "categoryId";
     //----------------------------------------------------------//
-    public final static  String NOT_EMPTY_NAME = "Name should not be null or empty";
-    public final static  String NOT_EMPTY_EMAIL = "Email should not be null or empty";
-    public final static  String NOT_EMPTY_BODY = "Body should not be null or empty";
-    public final static  String NOT_EMPTY_TITLE = "Title should not be null or empty";
-    public final static  String NOT_EMPTY_DESCRIPTION = "Description should not be null or empty";
-    public final static  String NOT_EMPTY_CONTENT = "Content should not be null or empty";
-    public final static  String SIZE_BODY = "Comment body must be minimum 10 characters";
-    public final static  String SIZE_DESCRIPTION = "Description should have at least 10 characters";
-    public final static  String SIZE_TITLE = "Title should have at least 2 characters";
+    public final static  String LOGIN_ENDPOINT = "/auth/login";
+    public final static  String SIGNIN_ENDPOINT = "/auth/signin";
+    //----------------------------------------------------------//
+    public final static  String REGISTER_ENDPOINT = "/auth/register";
+    public final static  String SIGNUP_ENDPOINT = "/auth/signup";
+    //----------------------------------------------------------//
+
+    public final static  String NOT_EMPTY_NAME = "Name should not be null or empty.";
+    public final static  String NOT_EMPTY_EMAIL = "Email should not be null or empty.";
+    public final static  String NOT_EMPTY_BODY = "Body should not be null or empty.";
+    public final static  String NOT_EMPTY_TITLE = "Title should not be null or empty.";
+    public final static  String NOT_EMPTY_DESCRIPTION = "Description should not be null or empty.";
+    public final static  String NOT_EMPTY_CONTENT = "Content should not be null or empty.";
+    public final static  String SIZE_BODY = "Comment body must be minimum 10 characters.";
+    public final static  String SIZE_DESCRIPTION = "Description should have at least 10 characters.";
+    public final static  String SIZE_TITLE = "Title should have at least 2 characters.";
     //----------------------------------------------------------//
     public final static  String USER_NOT_FOUND = "User not found with username or email : ";
+    public final static  String USERNAME_EXISTS = "Username already exists.";
+    public final static  String EMAIL_EXISTS = "Email already exists.";
 
 }
