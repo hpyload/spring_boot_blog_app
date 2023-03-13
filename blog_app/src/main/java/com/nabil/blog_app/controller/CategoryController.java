@@ -30,8 +30,8 @@ public class CategoryController {
     }
 
     @GetMapping(CATEGORY_ENDPOINT)
-    public List<CategoryDto> getAllCategories() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
+        return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @GetMapping(PATH_CATEGORY_ID)

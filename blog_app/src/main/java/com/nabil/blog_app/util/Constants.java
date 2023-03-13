@@ -29,6 +29,7 @@ public class Constants {
     public final static String PATH_POST_ID = "/posts/{postId}";
     public final static  String PATH_VARIABLE_POST_ID = "postId";
     public final static String POST_ENDPOINT = "/posts";
+    public final static String POSTS_CATEGORY_ENDPOINT = "/posts/category/{categoryId}";
     //----------------------------------------------------------//
     public final static String COMMENT_ENDPOINT = "/comments";
     public final static String PATH_COMMENT_ID = "/comments/{commentId}";

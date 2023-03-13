@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.nabil.blog_app.util.Constants.*;
 
 /**
@@ -39,7 +41,7 @@ public class PostController {
             @RequestParam(value = SORT_BY, defaultValue = DEFAULT_VALUE_SORT_BY, required = false) String sortBy,
             @RequestParam(value = SORT_ORDER, defaultValue = DEFAULT_VALUE_SORT_ORDER, required = false) String sortOrder){
         return new ResponseEntity<>(postService.getAllPosts(pageNo, pageSize,sortBy, sortOrder), HttpStatus.OK).getBody();
-//        ResponseEntity represents the whole HTTP response: status code, headers, and body.
+//        ResponseEntity represents the whole HTTP response: status code, headers and body.
     }
 
     @GetMapping(PATH_POST_ID)
@@ -59,5 +61,10 @@ public class PostController {
     public ResponseEntity<String> deletePost(@PathVariable(name = PATH_VARIABLE_POST_ID) Long postId){
         postService.deletePost(postId);
         return new ResponseEntity<>(POST_DELETE_INFO, HttpStatus.OK);
+    }
+
+    @GetMapping(POSTS_CATEGORY_ENDPOINT)
+    public ResponseEntity<List<PostDto>> getPostsByCategoryId(@PathVariable(name = PATH_VARIABLE_CATEGORY_ID) Long categoryId) {
+        return new ResponseEntity<>(postService.getPostsByCategoryId(categoryId), HttpStatus.OK);
     }
 }
