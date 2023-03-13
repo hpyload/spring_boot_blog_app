@@ -2,6 +2,7 @@ package com.nabil.blog_app.controller;
 
 import com.nabil.blog_app.dto.LoginDto;
 import com.nabil.blog_app.dto.RegisterDto;
+import com.nabil.blog_app.response.JwtAuthResponse;
 import com.nabil.blog_app.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,11 @@ public class AuthController {
     }
 
     @PostMapping({LOGIN_ENDPOINT, SIGNIN_ENDPOINT})
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
-        return new ResponseEntity<>(authService.login(loginDto), HttpStatus.OK);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
+        String token = authService.login(loginDto);
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+        return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
     }
 
     @PostMapping({REGISTER_ENDPOINT, SIGNUP_ENDPOINT})

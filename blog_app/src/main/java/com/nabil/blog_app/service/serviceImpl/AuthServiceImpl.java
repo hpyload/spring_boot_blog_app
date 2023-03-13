@@ -8,6 +8,7 @@ import com.nabil.blog_app.exception.BlogApiException;
 import com.nabil.blog_app.exception.ResourceNotFoundException;
 import com.nabil.blog_app.repository.RoleRepository;
 import com.nabil.blog_app.repository.UserRepository;
+import com.nabil.blog_app.security.JwtTokenProvider;
 import com.nabil.blog_app.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,15 +34,17 @@ public class AuthServiceImpl implements AuthService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public AuthServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder,
-                           AuthenticationManager authenticationManager) {
+                           AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
@@ -51,7 +54,8 @@ public class AuthServiceImpl implements AuthService {
                         loginDto.getUsernameOrEmail(),
                         loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "User " + loginDto.getUsernameOrEmail() + " logged in successfully.";
+        String token = jwtTokenProvider.generateToken(authentication);
+        return token;
     }
 
     @Override
