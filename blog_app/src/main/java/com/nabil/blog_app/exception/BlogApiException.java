@@ -1,5 +1,6 @@
 package com.nabil.blog_app.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
  * @at 3/6/23 12:20 AM
  */
 public class BlogApiException extends RuntimeException {
+    @Getter
     private final HttpStatus status;
     private final String message;
 
@@ -19,10 +21,6 @@ public class BlogApiException extends RuntimeException {
         super(message);
         this.status = status;
         this.message = message1;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
     }
 
     @Override
